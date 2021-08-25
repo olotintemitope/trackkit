@@ -1,0 +1,24 @@
+{
+    "name": "temitopeolotin/tracktik",
+    "type": "phpunit",
+    "require": {
+        "phpunit/phpunit": "10.0.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tracktik\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tracktik\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Temitope Olotin",
+            "email": "olotintemitope@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
