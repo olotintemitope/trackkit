@@ -24,14 +24,44 @@ class ElectronicItem
      */
     private $type;
 
+    /**
+     * @var int
+     */
+    private $maxExtras = 0;
+
+    public static function getTypes(): array
+    {
+        return static::$types;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMaxExtras(): int
+    {
+        return $this->maxExtras;
+    }
+
+    /**
+     * @param int $maxExtras
+     */
+    public function setMaxExtras(int $maxExtras): ElectronicItem
+    {
+        $this->maxExtras = $maxExtras;
+
+        return $this;
+    }
+
     public function getPrice()
     {
         return $this->price;
     }
 
-    public function setPrice($price)
+    public function setPrice($price): ElectronicItem
     {
         $this->price = $price;
+
+        return $this;
     }
 
     public function getType()
@@ -39,9 +69,11 @@ class ElectronicItem
         return $this->type;
     }
 
-    public function setType($type)
+    public function setType($type): ElectronicItem
     {
         $this->type = $type;
+
+        return $this;
     }
 
     public function getWired()
@@ -49,14 +81,10 @@ class ElectronicItem
         return $this->wired;
     }
 
-    public function setWired($wired)
+    public function setWired($wired): ElectronicItem
     {
         $this->wired = $wired;
-    }
 
-    public static function getTypes()
-    {
-        return static::$types;
+        return $this;
     }
-
 }

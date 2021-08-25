@@ -2,8 +2,6 @@
 
 namespace TrackKit;
 
-use TrackKit\ElectronicItem;
-
 class ElectronicItems
 {
     private $items;
@@ -20,7 +18,7 @@ class ElectronicItems
      */
     public function getSortedItems($type)
     {
-        $sorted = array();
+        $sorted = [];
         foreach ($this->items as $item) {
             $sorted[($item->price * 100)] = $item;
         }
