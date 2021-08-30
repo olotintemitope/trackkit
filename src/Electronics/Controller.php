@@ -1,6 +1,10 @@
 <?php
 
-class Controller
+namespace TrackKit\Electronics;
+
+use TrackKit\ElectronicItem;
+
+class Controller extends ElectronicItem
 {
 
 }

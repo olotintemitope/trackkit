@@ -1,6 +1,10 @@
 <?php
 
-class Console
+namespace TrackKit\Electronics;
+
+use TrackKit\ElectronicItem;
+
+class Console extends ElectronicItem
 {
 
 }
