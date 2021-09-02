@@ -170,4 +170,43 @@ class ElectronicItemsConstraintTest extends TestCase
         $result = $electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_MICROWAVE);
         $this->assertTrue($result);
     }
+
+    public function testThatAControllerCannotHaveExtras(): void
+    {
+        $controller = (new Controller())
+            ->setWired(false)
+            ->setPrice(500)
+            ->setType(ElectronicItem::ELECTRONIC_ITEM_CONTROLLER)
+            ->setMaxExtras(-1);
+
+        $electronicItems = new ElectronicItems([
+            $controller,
+        ]);
+
+        $result = $electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_CONTROLLER);
+        $this->assertTrue($result);
+    }
+
+    public function testThatAControllerWillThrowExceptionWithAnyExtras(): void
+    {
+        $this->expectException(RuntimeException::class);
+
+        $controller = (new Controller())
+            ->setWired(false)
+            ->setPrice(700)
+            ->setType(ElectronicItem::ELECTRONIC_ITEM_CONTROLLER)
+            ->setMaxExtras(-1);
+
+        $tv1 = (new Television())
+            ->setWired(false)
+            ->setPrice(1500)
+            ->setType(ElectronicItem::ELECTRONIC_ITEM_TELEVISION);
+
+        $electronicItems = new ElectronicItems([
+            $controller,
+            $tv1,
+        ]);
+
+        $electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_CONTROLLER);
+    }
 }
