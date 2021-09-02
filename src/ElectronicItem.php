@@ -27,7 +27,7 @@ class ElectronicItem
     /**
      * @var int
      */
-    private $maxExtras = 0;
+    private $maxExtras = INF;
 
     public static function getTypes(): array
     {
@@ -37,15 +37,16 @@ class ElectronicItem
     /**
      * @return mixed
      */
-    public function getMaxExtras(): int
+    public function getMaxExtras(): float
     {
         return $this->maxExtras;
     }
 
     /**
-     * @param int $maxExtras
+     * @param float $maxExtras
+     * @return ElectronicItem
      */
-    public function setMaxExtras(int $maxExtras): ElectronicItem
+    public function setMaxExtras(float $maxExtras): ElectronicItem
     {
         $this->maxExtras = $maxExtras;
 

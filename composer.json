@@ -7,12 +7,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tracktik\\": "src/"
+            "TrackKit\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tracktik\\Tests\\": "tests/"
+            "TrackKit\\Tests\\": "tests/"
         }
     },
     "authors": [
