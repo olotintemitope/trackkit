@@ -1,6 +1,6 @@
 <?php
 
-namespace TrackKit;
+namespace TrackTik;
 
 class ElectronicItems
 {
@@ -16,15 +16,13 @@ class ElectronicItems
      *
      * @return array
      */
-    public function getSortedItems($type)
+    public function getSortedItems($type): array
     {
-        $sorted = [];
-        foreach ($this->items as $item) {
-            $sorted[($item->price * 100)] = $item;
-        }
-        ksort($sorted, SORT_NUMERIC);
+        uasort($this->items, static function ($item1, $item2) use ($type) {
+            return $item1->{$type} <=> $item2->{$type};
+        });
 
-        return $sorted;
+        return $this->items;
     }
 
     /**
@@ -49,13 +47,15 @@ class ElectronicItems
      */
     public function canHaveExtras(string $type): bool
     {
-        if (count($this->items) <= 0) {
+        $items = $this->items;
+        
+        if (count($items) <= 0) {
             throw new \RuntimeException("Electronic items cannot be empty");
         }
 
-        if (in_array($type, ElectronicItem::getTypes())) {
-            $item = array_splice($this->items, 0, 1);
-            $extraItems = array_splice($this->items, 0, count($this->items));
+        if (in_array($type, ElectronicItem::getTypes(), true)) {
+            $item = array_splice($items, 0, 1);
+            $extraItems = array_splice($items, 0, count($items));
 
             if ($item[0]->getMaxExtras() === -1.0 && count($extraItems) > 0) {
                 throw new \RuntimeException("{$type} cannot have any extras");

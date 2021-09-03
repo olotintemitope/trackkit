@@ -1,8 +1,8 @@
 <?php
 
-namespace TrackKit\Electronics;
+namespace TrackTik\Electronics;
 
-use TrackKit\ElectronicItem;
+use TrackTik\ElectronicItem;
 
 class Microwave extends ElectronicItem
 {

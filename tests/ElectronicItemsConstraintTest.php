@@ -4,12 +4,12 @@ namespace TrackKit\Tests;
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use TrackKit\ElectronicItem;
-use TrackKit\ElectronicItems;
-use TrackKit\Electronics\Console;
-use TrackKit\Electronics\Controller;
-use TrackKit\Electronics\Microwave;
-use TrackKit\Electronics\Television;
+use TrackTik\ElectronicItem;
+use TrackTik\ElectronicItems;
+use TrackTik\Electronics\Console;
+use TrackTik\Electronics\Controller;
+use TrackTik\Electronics\Microwave;
+use TrackTik\Electronics\Television;
 
 class ElectronicItemsConstraintTest extends TestCase
 {

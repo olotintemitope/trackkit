@@ -1,6 +1,6 @@
 <?php
 
-namespace TrackKit;
+namespace TrackTik;
 
 class ElectronicItem
 {
@@ -29,7 +29,7 @@ class ElectronicItem
     /**
      * @var int
      */
-    private $maxExtras = INF;
+    public $maxExtras = INF;
 
     public static function getTypes(): array
     {
