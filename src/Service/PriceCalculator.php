@@ -12,8 +12,8 @@ class PriceCalculator
     {
         $this->items = $items;
     }
-    
-    public function calculate() : float 
+
+    public function calculate(): float
     {
         return array_reduce($this->items->getItems(), static function ($totalPrice, $item) {
             $totalPrice += $item->price;

@@ -11,7 +11,7 @@ use TrackTik\Service\PriceCalculator;
 
 // Scenario 1
 try {
-    $type = 'price';
+    $price = 'price';
 
     $consoleTotalPrice = 0.0;
     $tv1TotalPrice = 0.0;
@@ -20,25 +20,28 @@ try {
 
     $electronicItems = buyConsoleAndControllers();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_CONSOLE)) {
-        $electronicItems->getSortedItems($type);
+        $electronicItems->getSortedItems($price);
+        
         $consoleTotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     $electronicItems = buyTelevision1AndRemoteControllers();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_TELEVISION)) {
-        $electronicItems->getSortedItems($type);
+        $electronicItems->getSortedItems($price);
+        
         $tv1TotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     $electronicItems = buyTelevision2AndRemoteControllers();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_TELEVISION)) {
-        $electronicItems->getSortedItems($type);
+        $electronicItems->getSortedItems($price);
+        
         $tv2TotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     $electronicItems = buyMicrowave();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_MICROWAVE)) {
-        $electronicItems->getSortedItems($type);
+        $electronicItems->getSortedItems($price);
         $microwaveTotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
