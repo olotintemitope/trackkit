@@ -7,6 +7,7 @@ use TrackTik\Electronics\Console;
 use TrackTik\Electronics\Controller;
 use TrackTik\Electronics\Microwave;
 use TrackTik\Electronics\Television;
+use TrackTik\Service\PriceCalculator;
 
 // Scenario 1
 try {
@@ -19,22 +20,26 @@ try {
 
     $electronicItems = buyConsoleAndControllers();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_CONSOLE)) {
-        $consoleTotalPrice = calculateTotalPriceAndSortBy($electronicItems, $type);
+        $electronicItems->getSortedItems($type);
+        $consoleTotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     $electronicItems = buyTelevision1AndRemoteControllers();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_TELEVISION)) {
-        $tv1TotalPrice = calculateTotalPriceAndSortBy($electronicItems, $type);
+        $electronicItems->getSortedItems($type);
+        $tv1TotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     $electronicItems = buyTelevision2AndRemoteControllers();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_TELEVISION)) {
-        $tv2TotalPrice = calculateTotalPriceAndSortBy($electronicItems, $type);
+        $electronicItems->getSortedItems($type);
+        $tv2TotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     $electronicItems = buyMicrowave();
     if ($electronicItems->canHaveExtras(ElectronicItem::ELECTRONIC_ITEM_MICROWAVE)) {
-        $microwaveTotalPrice = calculateTotalPriceAndSortBy($electronicItems, $type);
+        $electronicItems->getSortedItems($type);
+        $microwaveTotalPrice = (new PriceCalculator($electronicItems))->calculate();
     }
 
     // Total price of 1 console, 2 televisions with different prices and 1 microwave
@@ -46,26 +51,10 @@ try {
     //console and its controllers had cost her.
     echo "\n";
     echo "Total price of console and its controllers = {$consoleTotalPrice}";
+    echo "\n";
 
 } catch (RuntimeException $exception) {
     echo $exception->getMessage();
-}
-
-
-/**
- * @param $electronicItems
- * @param $type
- * @return float
- */
-function calculateTotalPriceAndSortBy($electronicItems, $type): float
-{
-    $consoleItems = $electronicItems->getSortedItems($type);
-    
-    return array_reduce($consoleItems, static function ($totalPrice, $item) {
-        $totalPrice += $item->price;
-
-        return $totalPrice;
-    }, 0.0);
 }
 
 function buyMicrowave(): ElectronicItems

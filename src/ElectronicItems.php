@@ -14,6 +14,7 @@ class ElectronicItems
     /**
      * Returns the items depending on the sorting type requested
      *
+     * @param $type
      * @return array
      */
     public function getSortedItems($type): array
@@ -73,5 +74,15 @@ class ElectronicItems
         }
 
         throw new \RuntimeException("Electronic item type not recognised");
+    }
+
+    /**
+     * Get all the electronic items
+     * 
+     * @return array
+     */
+    public function getItems(): array
+    {
+        return $this->items;
     }
 }
